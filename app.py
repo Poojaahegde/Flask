@@ -14,7 +14,7 @@ def create_table():
 @app.route('/create' , methods = ['GET','POST'])
 def create():
     if request.method == 'GET':
-        return render_template('createpage.html')
+        return render_template('addstudent.html')
  
     if request.method == 'POST':
 
@@ -43,7 +43,7 @@ def create():
 @app.route('/')
 def RetrieveList():
     students = StudentModel.query.all()
-    return render_template('datalist.html',students = students)
+    return render_template('studentlist.html',students = students)
  
  
 @app.route('/<int:id>')
@@ -95,7 +95,7 @@ def update(id):
         return redirect('/')
         return f"Student with id = {id} Does nit exist"
  
-    return render_template('update.html', student = student)
+    return render_template('edit.html', student = student)
  
  
 @app.route('/<int:id>/delete', methods=['GET','POST'])
@@ -108,6 +108,6 @@ def delete(id):
             return redirect('/')
         abort(404)
      #return redirect('/')
-    return render_template('delete.html')
+    return render_template('remove.html')
  
 app.run(host='localhost', port=8080)
